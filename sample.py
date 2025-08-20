@@ -1,4 +1,4 @@
-
+# 20250820
 
 import numpy as np
 import tensorflow as tf
@@ -345,4 +345,3 @@ if __name__ == "__main__":
     print("output shape:", y.shape)  # (B, T, 1)
 
     model.summary()
-
