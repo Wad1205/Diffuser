@@ -1,0 +1,73 @@
+# diffusion
+name: CFGDiffusion
+horizon: 128
+n_timesteps: 100 #200
+loss_discount: 1
+predict_epsilon: true
+condition_guidance_w: 1.2
+clip_denoised: true
+loss_type: l2
+noise_ratio: 1.0
+loss_discount: 1.0
+use_sequence_cond: true #系列条件を使うか?
+use_class_free_guidance: true #推論時CFG補正の有無
+denoise_model: AdaGNUnet #choose a key from keys of following "denoiser"
+
+# denoising models
+denoiser:
+  TemporalUnet:
+    transition_dim: null
+    horizon: null
+    cond_dim: 0 #未使用
+    dim: 128
+    dim_mults:
+    - 1
+    - 2
+    - 4
+    - 8
+    cfg_dropout: 0.25
+    act_swish: false
+    kernel_size: 5
+
+  AdaGNUnet:
+    transition_dim: null
+    horizon: null
+    cond_dim: 128
+    num_heads: 4
+    ff_dim: 256 
+    num_cond_blocks: 2 
+    cfg_dropout: 0.25
+    c_emb_dropout: 0.1
+    base_channels: 64 
+    dim: 128 
+    dim_mults:
+    - 1
+    - 2
+    - 4
+    groups: 8
+    activation: swish
+
+# Decision Diffuser
+tau: 0.005
+learning_rate: 0.0002
+gradient_accumulate_every: 2
+step_start_ema: 1000
+update_ema_every: 5
+
+# params
+generates:
+- dummy_1
+- dummy_2
+- dammy_3
+conditions:
+- reward
+- dammy_4
+other:
+- dammy_5
+min:
+  dummy_1: -0.5
+max:
+  dummy_2: -0.5
+gain: {}
+mode_dict:
+  dummy_3: 3

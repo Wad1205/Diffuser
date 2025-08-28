@@ -1,0 +1,21 @@
+
+# training
+mode: train #'train', 'retrain' or 'test' or 'aug'
+n_epochs: 100
+n_steps_per_epoch: 1000
+batch_size: 32
+save_freq: 100
+load_path: 
+  models: save\dd_20250819_17_28_40_train\models\trained_models
+  scaler: save\dd_20250819_17_28_40_train\scalers.pkl
+  config: save\dd_20250819_17_28_40_train\config\config.yaml
+dataset_path:
+  #dir: dataset\Actor6
+  train:
+  - dataset\data1
+  valid:
+  - dataset\data1\sample1.csv
+  test:
+  - dataset\data1\sample1.csv
+  aug:
+  - dataset\data2\dirname
